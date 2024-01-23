@@ -1,6 +1,14 @@
 <script setup>
+import { ref } from 'vue' 
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import clciker from './components/button.vue'
+let test = ref(2);
+function toggle () {
+  if(this.test == 2) 
+  {this.test = 1} 
+  else {this.test = 2}
+} 
 </script>
 
 <template>
@@ -13,13 +21,20 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/forum">Forum</RouterLink>
+        <clciker @passToggle="toggle()"></clciker>
+      </nav>
+      <nav>
+        <p>test1</p>
+        <p>test2</p>
+        <p>test3</p>
       </nav>
     </div>
   </header>
 
   <RouterView />
 </template>
-
+<!--v-bind:disabled="test" -->
 <style scoped>
 header {
   line-height: 1.5;
@@ -52,8 +67,14 @@ nav a {
   border-left: 1px solid var(--color-border);
 }
 
-nav a:first-of-type {
+nav :first-of-type {
   border: 0;
+}
+
+p {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
 }
 
 @media (min-width: 1024px) {

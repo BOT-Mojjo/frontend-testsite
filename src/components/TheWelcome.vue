@@ -1,10 +1,13 @@
 <script setup>
+import { defineProps } from 'vue'
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+// let test = true;
+const props = defineProps({show:{type: Number, default: 1}})
 </script>
 
 <template>
@@ -19,13 +22,13 @@ import SupportIcon from './icons/IconSupport.vue'
     provides you with all information you need to get started.
   </WelcomeItem>
 
-  <WelcomeItem>
+  <WelcomeItem v-show="props.show == 1">
     <template #icon>
       <ToolingIcon />
     </template>
     <template #heading>Tooling</template>
 
-    This project is served and bundled with
+    This project is served and bundled with a
     <a href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
     recommended IDE setup is
     <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> +
