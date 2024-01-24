@@ -22,6 +22,11 @@ const router = createRouter({
       path: '/forum',
       name: 'forum',
       component: ForumView
+    },
+    {
+      path: '/newpost',
+      name: 'newpost',
+      component: () => import('../views/CreateListView.vue')
     }
   ]
 })

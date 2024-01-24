@@ -4,6 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import clciker from './components/button.vue'
 let test = ref(2);
+let hover_demo = ref("test2")
 function toggle () {
   if(this.test == 2) 
   {this.test = 1} 
@@ -22,11 +23,12 @@ function toggle () {
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/forum">Forum</RouterLink>
+        <RouterLink to="/newpost">Create New Listing</RouterLink>
         <clciker @passToggle="toggle()"></clciker>
       </nav>
       <nav>
         <p>test1</p>
-        <p>test2</p>
+        <p @mouseover="hover_demo='test4'">{{ hover_demo }}</p>
         <p>test3</p>
       </nav>
     </div>

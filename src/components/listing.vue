@@ -24,7 +24,7 @@ function calc_stars() {
 </script>
 <!-- ☆ ★ -->
 <template>
-    <article>
+    <article @click="$emit('focus')">
         <main>
             <h3>{{ props.Title }}</h3>
             <p>{{ props.Discription }}</p>
@@ -68,6 +68,7 @@ article {
     transition: background-color .15s ease-in-out;
     margin:.5rem;
     border-radius: 0.25rem;
+    cursor: pointer;
 }
 
 
