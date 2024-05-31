@@ -18,7 +18,7 @@ async function update_posts() {
 
 <template>
     <div>
-      <post @click="$emit('openPost', post._id); console.log(post._id)"v-for="post in sidebar_posts" :difficulty="post.challange" :title="post.title" :discription="post.body"/>
+      <post @click="$emit('openPost', post._id)"v-for="post in sidebar_posts" :difficulty="post.challange" :title="post.title" :discription="post.body"/>
     </div>
 </template>
   
