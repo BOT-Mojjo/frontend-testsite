@@ -34,10 +34,23 @@ async function bump_post(id){
     }).then((tea) => tea.json().then((tea2) => post.value.post_rating = tea2))
 }
 
+function close_dialog(e) {
+    if (
+        e.layerX < 0 ||
+        e.layerX > dialog.value.clientWidth ||
+        e.layerY < 0 ||
+        e.layerY > dialog.value.clientHeight
+    ) {
+        dialog.value.close()
+    }
+
+}
+
+
 </script>
 
 <template>
-    <dialog ref="dialog">
+    <dialog ref="dialog" @click="(e)=>close_dialog(e)">
         <article class="focused">
             <listing :difficulty="post.challange" :title="post.title" :discription="post.body"/>
             <nav>
