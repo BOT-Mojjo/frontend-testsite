@@ -1,17 +1,15 @@
 <script setup>
 import { computed } from 'vue';
-const props = defineProps(["Title", "Discription", "Difficulty"]);
+import diffLable from './DifficultyLable.vue';
+const props = defineProps(["title", "discription", "difficulty"]);
 const star_str = computed(calc_stars);
-const dif_word = ["Minor", "Lesser", "Standard", "Major", "Greater"];
 
-let decider = Math.floor((props.Difficulty)/2-0.5);
-if(decider < 0) decider = 0;
 
 
 function calc_stars() {
     let stars = [];
     for(let i = 0; i < 10; i++){
-        if(props.Difficulty <= i){
+        if(props.difficulty <= i){
             stars.push("☆");
         } else {
             stars.push("★");
@@ -26,12 +24,12 @@ function calc_stars() {
 <template>
     <article @click="$emit('focus')">
         <main>
-            <h3>{{ props.Title }}</h3>
-            <p>{{ props.Discription }}</p>
+            <h3>{{ props.title }}</h3>
+            <p>{{ props.discription }}</p>
         </main>
         <aside>
-            <h4>{{ dif_word[decider] }} Infestation</h4>
-            <div class="stars">    
+            <diffLable :difficulty="props.difficulty"/>    
+            <div class="stars">
                 <b v-for="star in star_str">
                     {{ star }}
                 </b>
@@ -40,7 +38,7 @@ function calc_stars() {
     </article>
 </template>
 
-<style>
+<style scoped>
 
 p{
     overflow-wrap: break-word;
@@ -51,17 +49,14 @@ p{
     grid-template-rows: repeat(5, 1.5rem);
     grid-template-columns: repeat(2, 1.5rem);
 }
-h4 {
-    width:4.5rem;
-}
 main{
-    width:25rem;
+    width:80%;
 }
 article {
     display: flex;
     flex-flow: row nowrap;
     justify-content:space-between;
-    width:32rem;
+    width: 100%;
     padding:0.5rem;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
@@ -70,7 +65,6 @@ article {
     border-radius: 0.25rem;
     cursor: pointer;
 }
-
 
 article:hover {
     background-color: hsla(160, 100%, 37%, 0.2);

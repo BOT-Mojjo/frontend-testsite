@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue'
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'

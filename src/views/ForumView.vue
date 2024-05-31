@@ -1,17 +1,26 @@
 <script setup>
-import listing from '@/components/listing.vue';
-
+import { ref } from 'vue';
+import Post from '@/components/listing.vue';
+let disc="mmmm mm m m mmmmmmmmm mmmmm mm mmmmmm mmm mmmmmmmmm mmmm mmmmm"
+const sidebar_posts = ref({})
+let last_id = 0
+update_posts()
+async function update_posts() {
+  let posts;
+  await fetch(import.meta.env.VITE_BACKEND_URL + "forum/", {
+    method:"get",
+    credentials:"omit",
+    mode:"cors",
+    // headers:{'page_amount':4}
+  }).then((response) => response.json().then((objects)=>sidebar_posts.value=objects))
+}
 </script>
 
 <template>
     <div>
-        <listing Title="Test 1" :Discription=disc Difficulty="1"></listing>
-        <listing Title="Test 2" :Discription=disc Difficulty="2"></listing>
-        <listing Title="Test 3" :Discription=disc Difficulty="3"></listing>
-        <listing Title="Test 4" :Discription=disc Difficulty="4"></listing>
-        <listing Title="Test 5" :Discription=disc Difficulty="5"></listing>
+      <post @click="$emit('openPost', post._id); console.log(post._id)"v-for="post in sidebar_posts" :difficulty="post.challange" :title="post.title" :discription="post.body"/>
     </div>
-    </template>
+</template>
   
   <style>
   @media (min-width: 1024px) {

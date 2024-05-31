@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 import TheWelcome from '../components/TheWelcome.vue'
 const props = defineProps({disabled:{type:Number, default:1}})
 </script>
